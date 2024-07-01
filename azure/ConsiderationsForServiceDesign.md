@@ -7,6 +7,7 @@
 
 | Date        | Notes                                                          |
 | ----------- | -------------------------------------------------------------- |
+| 2024-Jul-01 | Update service client structure guidance                       | 
 | 2024-Mar-17 | Updated LRO guidelines                                         |
 | 2024-Jan-17 | Added guidelines on returning string offsets & lengths         |
 | 2022-Jul-15 | Update guidance on long-running operations                     |
@@ -39,7 +40,7 @@ A **data plane** API is used by developers to implement applications. Occasional
 Although, best practices and patterns described in this document apply to all HTTP/REST APIs, they are especially important for **data plane** services because it is the primary interface for developers using your service. The **management plane** APIs may have other preferred practices based on the conventions of the [Azure RPC](https://aka.ms/azurerpc).
 
 ## Service Client Structure
-The client structure of a service is not solely a decision for the SDK side; it is also closely related to the service's conceptual model, API complexity and size, expected customer numbers, and anticipated growth. This decision should be made upfront to ensure the client structure accurately represents the service and provides the best user experience. As the service grows, the client structure should evolve accordingly. A well-considered client structure can also reduce communication efforts within the service's feature teams.  
+The client structure of a service is not solely a decision for the SDK side; it is also closely related to the service's conceptual model, API complexity and size, and usage patterns. This decision should be made upfront to ensure the client structure accurately represents the service and provides the best user experience. As the service grows, the client structure should evolve accordingly. A well-considered client structure can also reduce communication efforts within the service's feature teams.  
 
 A client refers to a set of service APIs that share the same endpoint and can be uniformly versioned. A package can contain multiple clients, which can be organized in a parallel or hierarchical structure depending on the service's conceptual model. And a service can have multiple packages. Which leads to four kinds of different client structures: **Single Client in Single Package**, **Multiple Parallel Clients in Single Package**, **Multiple Hierarchy Clients in Single Package**, **Multiple Packages**. And for a given service, our considerations for choosing between different client structures are as following:
 
